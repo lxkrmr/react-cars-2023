@@ -11,7 +11,7 @@ const formSlice = createSlice({
       state.name = action.payload;
     },
     changeCost(state, action) {
-      state.cost = action.payload;
+      state.cost = parseInt(action.payload) ?? 0;
     },
   },
 });
