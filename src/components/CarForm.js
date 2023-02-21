@@ -22,32 +22,34 @@ function CarForm() {
   };
 
   return (
-    <div className="car-form panel">
-      <h4 className="subtitle is-3">Add Car</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="field-group">
-          <div className="field">
-            <label className="label">Name</label>
-            <input
-              className="input is-expanded"
-              value={name}
-              onChange={handleNameChange}
-            />
+    <div className="panel is-link">
+      <p className="panel-heading">Add Car</p>
+      <div className="panel-block">
+        <form onSubmit={handleSubmit}>
+          <div className="field-group">
+            <div className="field">
+              <label className="label">Name</label>
+              <input
+                className="input is-expanded"
+                value={name}
+                onChange={handleNameChange}
+              />
+            </div>
+            <div className="field">
+              <label className="label">Cost</label>
+              <input
+                type="number"
+                className="input is-expanded"
+                value={cost || ''}
+                onChange={handleCostChange}
+              />
+            </div>
           </div>
           <div className="field">
-            <label className="label">Cost</label>
-            <input
-              type="number"
-              className="input is-expanded"
-              value={cost || ''}
-              onChange={handleCostChange}
-            />
+            <button className="button is-link">Submit</button>
           </div>
-        </div>
-        <div className="field">
-          <button className="button is-link">Submit</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

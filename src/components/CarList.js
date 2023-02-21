@@ -4,10 +4,17 @@ import { removeCar } from '../store';
 function CarList() {
   const dispatch = useDispatch();
 
-  const cars = useSelector(({ cars: { data, searchTerm } }) => {
-    return data.filter((car) => {
+  const { cars, name } = useSelector(({ form, cars: { data, searchTerm } }) => {
+    const filteredCars = data.filter((car) => {
       return car.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
+
+    console.log(form.name);
+
+    return {
+      cars: filteredCars,
+      name: form.name,
+    };
   });
 
   const handleCarDelete = (car) => {
@@ -15,17 +22,23 @@ function CarList() {
   };
 
   const renderedCars = cars.map((car) => {
+    const isSimilarToNewEntry =
+      name && car.name.toLowerCase().includes(name.toLowerCase());
+
     return (
-      <div key={car.id} className="panel">
-        <p>
+      <div
+        key={car.id}
+        className={`panel ${isSimilarToNewEntry && 'is-warning'}`}
+      >
+        <p className="panel-heading">
           {car.name} - ${car.cost}
+          <button
+            onClick={() => handleCarDelete(car)}
+            className="button is-danger"
+          >
+            Delete
+          </button>
         </p>
-        <button
-          onClick={() => handleCarDelete(car)}
-          className="button is-danger"
-        >
-          Delete
-        </button>
       </div>
     );
   });

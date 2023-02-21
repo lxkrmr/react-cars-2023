@@ -13,17 +13,17 @@ function CarSearch() {
   };
 
   return (
-    <div className="list-header">
-      <h3 className="title is-3">
-        <div className="search field is-horizontal">
-          <label className="label">Search</label>
-          <input
-            className="input"
-            value={searchTerm}
-            onChange={handleSearchTermChange}
-          />
-        </div>
-      </h3>
+    <div className="panel is-info">
+      <p className="panel-heading">Search</p>
+      <div className="panel-block">
+        <input
+          className="input is-info"
+          type="text"
+          placeholder="search for a car"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+        />
+      </div>
     </div>
   );
 }
